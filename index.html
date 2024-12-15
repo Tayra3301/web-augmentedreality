@@ -4,25 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AR Surface Detection</title>
-  <script src="https://cdn.jsdelivr.net/npm/aframe@1.2.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mindar@0.5.2/dist/aframe/dist/aframe-mindar.js"></script>
+  
+  <!-- A-Frame and MindAR Libraries -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mindar@0.5.3/dist/mindar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
+
   <!-- A-Frame Scene with MindAR Integration -->
-  <a-scene mindar="cameraMode: environment; surfaceDetection: true" embedded>
+  <a-scene mindar="surfaceDetection: true;" embedded>
 
     <!-- Camera for AR -->
     <a-camera position="0 0 0"></a-camera>
 
-    <!-- Plane Surface -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" color="lightgrey"></a-plane>
+    <!-- Plane (Floor Surface) where objects will appear -->
+    <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" color="lightgrey" shadow="receive: true"></a-plane>
 
-    <!-- 3D Model (Cube) -->
-    <a-box position="0 0.25 0" depth="0.5" height="0.5" width="0.5" color="red"></a-box>
+    <!-- Text Element Above the Surface -->
+    <a-text value="Welcome to AR!" position="0 0.5 0" color="blue" scale="2 2 2"></a-text>
 
-    <!-- Text Above the Surface -->
-    <a-text value="Hello, AR World!" position="0 0.5 0" color="blue"></a-text>
+    <!-- 3D Box (Placed Above the Surface) -->
+    <a-box position="0 0.25 0" depth="0.5" height="0.5" width="0.5" color="red" shadow="cast: true"></a-box>
 
   </a-scene>
+
 </body>
 </html>
