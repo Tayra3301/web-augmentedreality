@@ -5,26 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AR Surface Detection</title>
   
-  <!-- A-Frame and MindAR Libraries -->
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mindar@0.5.3/dist/mindar.js"></script>
+  <!-- Latest A-Frame and MindAR Libraries -->
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mindar@0.5.4/dist/mindar.min.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
 
   <!-- A-Frame Scene with MindAR Integration -->
-  <a-scene mindar="surfaceDetection: true;" embedded>
+  <a-scene mindar="surfaceDetection: true; debug: true;" embedded>
 
     <!-- Camera for AR -->
     <a-camera position="0 0 0"></a-camera>
 
-    <!-- Plane (Floor Surface) where objects will appear -->
+    <!-- Plane (Surface) where AR objects will appear -->
     <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" color="lightgrey" shadow="receive: true"></a-plane>
 
-    <!-- Text Element Above the Surface -->
+    <!-- Moving Text Above the Surface -->
     <a-text value="Welcome to AR!" position="0 0.5 0" color="blue" scale="2 2 2"></a-text>
 
     <!-- 3D Box (Placed Above the Surface) -->
     <a-box position="0 0.25 0" depth="0.5" height="0.5" width="0.5" color="red" shadow="cast: true"></a-box>
+
+    <!-- 3D Sphere (To demonstrate another object) -->
+    <a-sphere position="1 0.5 0" radius="0.3" color="yellow" shadow="cast: true"></a-sphere>
 
   </a-scene>
 
