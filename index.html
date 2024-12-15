@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs>
+      <!-- Plain surface (floor) -->
+      <a-plane position="0 0 -2" rotation="-90 0 0" width="5" height="5" color="#ffffff"></a-plane>
+
+      <!-- Moving informative text -->
+      <a-text 
+        value="Welcome to Our Business!" 
+        position="0 0.5 -2" 
+        color="blue" 
+        animation="property: position; to: 0 1 -2; loop: true; dur: 2000">
+      </a-text>
+
+      <!-- A simple 3D box -->
+      <a-box position="0 0.2 -2" depth="0.5" height="0.5" width="0.5" color="green"></a-box>
+    </a-scene>
+  </body>
+</html>
