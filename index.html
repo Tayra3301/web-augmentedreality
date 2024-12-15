@@ -19,10 +19,10 @@
   <!-- A-Frame Scene with AR.js -->
   <a-scene embedded arjs="sourceType: webcam; trackingMethod: best;">
 
-    <!-- Camera Settings -->
-    <a-camera></a-camera>
+    <!-- Camera that changes based on device -->
+    <a-camera id="camera"></a-camera>
 
-    <!-- Marker -->
+    <!-- Marker-based AR -->
     <a-marker type="pattern" url="path_to_your_marker.patt">
       <!-- Content to show when logo is scanned -->
       <a-box position="0 0.5 0" depth="0.5" height="0.5" width="0.5" color="red"></a-box>
@@ -33,6 +33,31 @@
     <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="lightgrey"></a-plane>
 
   </a-scene>
+
+  <script>
+    // Function to detect device type
+    function isMobileDevice() {
+      return /Mobi|Android/i.test(navigator.userAgent);
+    }
+
+    // Set camera settings based on device type
+    function setCameraSettings() {
+      var camera = document.querySelector("#camera");
+
+      if (isMobileDevice()) {
+        // Mobile Settings (Less Zoomed In)
+        camera.setAttribute('position', '0 0 2');  // Close to surface
+        camera.setAttribute('fov', '75');          // Wider Field of View
+      } else {
+        // Desktop Settings (More Zoomed Out)
+        camera.setAttribute('position', '0 0 5');  // Farther from surface
+        camera.setAttribute('fov', '90');          // Narrower Field of View
+      }
+    }
+
+    // Apply camera settings on page load
+    window.onload = setCameraSettings;
+  </script>
 
 </body>
 </html>
