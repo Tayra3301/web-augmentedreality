@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surface Detection AR</title>
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mindar@0.4.0"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
-      <!-- Floor Surface -->
-      <a-plane position="0 0 0" rotation="-90 0 0" width="5" height="5" color="#cccccc"></a-plane>
+    <a-scene mindar 
+             embedded 
+             mindar-image 
+             gesture-detector 
+             color-space="sRGB" 
+             vr-mode-ui="enabled: false">
+      
+      <!-- MindAR Camera -->
+      <a-camera position="0 0 0"></a-camera>
 
-      <!-- Informative Moving Text -->
+      <!-- Surface Plane -->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="1" height="1" color="lightgray"></a-plane>
+
+      <!-- Moving Text on Plane -->
       <a-text 
-        value="Welcome to Our Business!" 
-        position="0 1 0"  <!-- 1 meter above the floor -->
-        color="blue" 
-        animation="property: position; to: 0 1.2 0; loop: true; dur: 2000">
+        value="Hello, World!"
+        position="0 0.5 0" 
+        rotation="0 0 0"
+        color="blue">
       </a-text>
 
-      <!-- 3D Box Object Above Floor -->
-      <a-box 
-        position="0 0.3 0" <!-- 0.3 meters above the floor -->
-        depth="0.5" 
-        height="0.5" 
-        width="0.5" 
-        color="green">
-      </a-box>
+      <!-- 3D Object -->
+      <a-box position="0 0.3 0" depth="0.5" height="0.5" width="0.5" color="red"></a-box>
     </a-scene>
   </body>
 </html>
