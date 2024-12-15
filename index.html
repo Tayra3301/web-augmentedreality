@@ -18,12 +18,12 @@
 
   <!-- A-Frame Scene with AR.js -->
   <a-scene embedded arjs="sourceType: webcam; trackingMethod: best;">
-
-    <!-- Camera that changes based on device -->
+    
+    <!-- Camera with dynamic settings -->
     <a-camera id="camera"></a-camera>
 
     <!-- Marker-based AR -->
-    <a-marker type="pattern" url="path_to_your_marker.patt">
+    <a-marker type="pattern" url="pattern-LOgo.patt">
       <!-- Content to show when logo is scanned -->
       <a-box position="0 0.5 0" depth="0.5" height="0.5" width="0.5" color="red"></a-box>
       <a-text value="Logo Scanned!" position="0 1 0" scale="2 2 2" color="blue"></a-text>
@@ -35,28 +35,30 @@
   </a-scene>
 
   <script>
-    // Function to detect device type
-    function isMobileDevice() {
+    // Detect if the user is on a mobile device
+    function isMobile() {
       return /Mobi|Android/i.test(navigator.userAgent);
     }
 
-    // Set camera settings based on device type
-    function setCameraSettings() {
-      var camera = document.querySelector("#camera");
-
-      if (isMobileDevice()) {
-        // Mobile Settings (Less Zoomed In)
-        camera.setAttribute('position', '0 0 2');  // Close to surface
-        camera.setAttribute('fov', '75');          // Wider Field of View
+    // Set camera properties based on device
+    function setCameraProperties() {
+      var camera = document.querySelector('#camera');
+      
+      if (isMobile()) {
+        // For mobile devices, we make the camera closer and have a wider FOV
+        camera.setAttribute('position', '0 0 3');
+        camera.setAttribute('fov', '70');
       } else {
-        // Desktop Settings (More Zoomed Out)
-        camera.setAttribute('position', '0 0 5');  // Farther from surface
-        camera.setAttribute('fov', '90');          // Narrower Field of View
+        // For desktop devices, we make the camera farther and have a narrower FOV
+        camera.setAttribute('position', '0 0 5');
+        camera.setAttribute('fov', '80');
       }
     }
 
     // Apply camera settings on page load
-    window.onload = setCameraSettings;
+    window.onload = function() {
+      setCameraProperties();
+    };
   </script>
 
 </body>
