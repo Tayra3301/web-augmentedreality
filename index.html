@@ -1,36 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surface Detection AR</title>
-    <script src="https://cdn.jsdelivr.net/npm/aframe@1.3.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mindar@0.4.0"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene mindar 
-             embedded 
-             mindar-image 
-             gesture-detector 
-             color-space="sRGB" 
-             vr-mode-ui="enabled: false">
-      
-      <!-- MindAR Camera -->
-      <a-camera position="0 0 0"></a-camera>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR Surface Detection</title>
+  <script src="https://cdn.jsdelivr.net/npm/aframe@1.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mindar@0.5.2/dist/aframe/dist/aframe-mindar.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+  <!-- A-Frame Scene with MindAR Integration -->
+  <a-scene mindar="cameraMode: environment; surfaceDetection: true" embedded>
 
-      <!-- Surface Plane -->
-      <a-plane position="0 0 0" rotation="-90 0 0" width="1" height="1" color="lightgray"></a-plane>
+    <!-- Camera for AR -->
+    <a-camera position="0 0 0"></a-camera>
 
-      <!-- Moving Text on Plane -->
-      <a-text 
-        value="Hello, World!"
-        position="0 0.5 0" 
-        rotation="0 0 0"
-        color="blue">
-      </a-text>
+    <!-- Plane Surface -->
+    <a-plane position="0 0 0" rotation="-90 0 0" width="2" height="2" color="lightgrey"></a-plane>
 
-      <!-- 3D Object -->
-      <a-box position="0 0.3 0" depth="0.5" height="0.5" width="0.5" color="red"></a-box>
-    </a-scene>
-  </body>
+    <!-- 3D Model (Cube) -->
+    <a-box position="0 0.25 0" depth="0.5" height="0.5" width="0.5" color="red"></a-box>
+
+    <!-- Text Above the Surface -->
+    <a-text value="Hello, AR World!" position="0 0.5 0" color="blue"></a-text>
+
+  </a-scene>
+</body>
 </html>
